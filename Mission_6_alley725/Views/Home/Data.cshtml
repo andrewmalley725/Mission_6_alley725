@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Movies";
+    ViewData["Theaders"] = new string[] { "Title", "Rating", "Category", "Year", "Edited", "Lent to", "Notes" };
+}
+
+@model List<Movies>;
+
+<table>
+    <thead>
+        <tr>
+            @foreach (string header in (string[])ViewData["Theaders"])
+            {
+                <th>@header</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model)
+            {
+        <tr>
+            <td>@entity.title</td>
+            <td>@entity.rating</td>
+            <td>@entity.category</td>
+            <td>@entity.year</td>
+
+            @if (entity.edited == true)
+            {
+                <td>@entity.edited</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+
+            <td>@entity.lentTo</td>
+            <td>@entity.notes</td>
+        </tr>
+            }
+    </tbody>
+</table>
