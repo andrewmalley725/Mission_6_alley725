@@ -48,7 +48,7 @@ namespace Mission_6_alley725.Controllers
 
         [HttpPost]
         public IActionResult MovieForm(Movies movie)
-        { 
+        {
             _db.Add(movie);
             _db.SaveChanges();
             var data = _db.Movies.ToList();
@@ -59,9 +59,9 @@ namespace Mission_6_alley725.Controllers
         {
             var data = _db.Movies.ToList();
             return View(data);
-        }
+         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

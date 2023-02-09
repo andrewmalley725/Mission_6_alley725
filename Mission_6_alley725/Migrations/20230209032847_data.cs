@@ -24,6 +24,21 @@ namespace Mission_6_alley725.Migrations
                 {
                     table.PrimaryKey("PK_Movies", x => x.movieId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "movieId", "category", "edited", "lentTo", "notes", "rating", "title", "year" },
+                values: new object[] { 1, "Sports", false, "", "My all-time favorite", "PG", "Invincible", 2006 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "movieId", "category", "edited", "lentTo", "notes", "rating", "title", "year" },
+                values: new object[] { 2, "Comedy", false, "", "", "PG-13", "Tommy Boy", 1995 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "movieId", "category", "edited", "lentTo", "notes", "rating", "title", "year" },
+                values: new object[] { 3, "Action", false, "", "", "PG-13", "Top Gun: Maverick", 2022 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

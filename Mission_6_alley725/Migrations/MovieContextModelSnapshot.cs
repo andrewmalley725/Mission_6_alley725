@@ -49,6 +49,41 @@ namespace Mission_6_alley725.Migrations
                     b.HasKey("movieId");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            movieId = 1,
+                            category = "Sports",
+                            edited = false,
+                            lentTo = "",
+                            notes = "My all-time favorite",
+                            rating = "PG",
+                            title = "Invincible",
+                            year = 2006
+                        },
+                        new
+                        {
+                            movieId = 2,
+                            category = "Comedy",
+                            edited = false,
+                            lentTo = "",
+                            notes = "",
+                            rating = "PG-13",
+                            title = "Tommy Boy",
+                            year = 1995
+                        },
+                        new
+                        {
+                            movieId = 3,
+                            category = "Action",
+                            edited = false,
+                            lentTo = "",
+                            notes = "",
+                            rating = "PG-13",
+                            title = "Top Gun: Maverick",
+                            year = 2022
+                        });
                 });
 #pragma warning restore 612, 618
         }

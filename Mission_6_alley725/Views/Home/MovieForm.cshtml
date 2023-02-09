@@ -5,42 +5,52 @@
 
 @model Movies
 
-<form method="post">
-    <label asp-for="title">Title: </label>
-    <input type="text" asp-for="title" /><br />
+<style>
+    #add-movie {
+        text-align: center;
+    }
+</style>
 
-    <label asp-for="category">Category: </label>
-    <input type="text" asp-for="category" /><br />
+<div id="add-movie">
 
-    <label asp-for="year">Year: </label>
-    <input type="number" asp-for="year" /><br />
+    <form method="post">
+        <label asp-for="title">Title: </label>
+        <input type="text" asp-for="title" /><br />
 
-    <label asp-for="rating">Rating: </label>
-    <select asp-for="rating">
-        @foreach (string rating in (string[])ViewData["Ratings"])
-        {
-            if (rating == "G")
+        <label asp-for="category">Category: </label>
+        <input type="text" asp-for="category" /><br />
+
+        <label asp-for="year">Year: </label>
+        <input type="number" asp-for="year" /><br />
+
+        <label asp-for="rating">Rating: </label>
+        <select asp-for="rating">
+            @foreach (string rating in (string[])ViewData["Ratings"])
             {
-                <option selected value="@rating">@rating</option>
+                if (rating == "G")
+                {
+                    <option selected value="@rating">@rating</option>
+                }
+                else
+                {
+                    <option value="@rating">@rating</option>
+                }
+
             }
-            else
-            {
-                <option value="@rating">@rating</option>
-            }
+        </select><br />
 
-        }
-    </select><br />
+        <label asp-for="edited">Edited: </label>
+        <input type="checkbox" asp-for="edited" /><br />
 
-    <label asp-for="edited">Edited: </label>
-    <input type="checkbox" asp-for="edited" /><br />
+        <label asp-for="lentTo">Lent to: </label>
+        <input type="text" asp-for="lentTo" /><br />
 
-    <label asp-for="lentTo">Lent to: </label>
-    <input type="text" asp-for="lentTo" /><br />
-
-    <label asp-for="notes">Notes: </label>
-    <textarea asp-for="notes"></textarea> <br />
+        <label asp-for="notes">Notes: </label>
+        <textarea asp-for="notes"></textarea> <br />
 
 
-    <button type="submit">Add</button>
-</form>
+        <button type="submit" class="btn btn-secondary">Add</button>
+    </form>
+
+</div>
 

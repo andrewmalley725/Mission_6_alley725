@@ -4,38 +4,76 @@
     ViewData["Theaders"] = new string[] { "Title", "Rating", "Category", "Year", "Edited", "Lent to", "Notes" };
 }
 
-@model List<Movies>;
+@model List<Movies>
 
-<table>
-    <thead>
-        <tr>
-            @foreach (string header in (string[])ViewData["Theaders"])
-            {
-                <th>@header</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var entity in Model)
-            {
-        <tr>
-            <td>@entity.title</td>
-            <td>@entity.rating</td>
-            <td>@entity.category</td>
-            <td>@entity.year</td>
+<style>
+    #data {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-            @if (entity.edited == true)
-            {
-                <td>@entity.edited</td>
-            }
-            else
-            {
-                <td>No</td>
-            }
+        #data td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-            <td>@entity.lentTo</td>
-            <td>@entity.notes</td>
-        </tr>
+        #data tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #data tr:hover {
+            background-color: #ddd;
+        }
+
+        #data th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+    #data-parent {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        padding-left: 30%;
+    }
+</style>
+<div id='data-parent'>
+    <table id="data">
+        <thead>
+            <tr>
+                @foreach (string header in (string[])ViewData["Theaders"])
+                {
+                    <th>@header</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entity in Model)
+            {
+                <tr>
+                    <td>@entity.title</td>
+                    <td>@entity.rating</td>
+                    <td>@entity.category</td>
+                    <td>@entity.year</td>
+
+                    @if (entity.edited == true)
+                    {
+                        <td>@entity.edited</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+
+                    <td>@entity.lentTo</td>
+                    <td>@entity.notes</td>
+                </tr>
+
             }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
