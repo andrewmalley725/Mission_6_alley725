@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,11 +16,16 @@ namespace Mission_6_alley725.Models
         [Required]
         public string title { get; set; }
 
+        [ForeignKey("rating")]
         [Required]
-        public string rating { get; set; }
+        public int ratingId { get; set; }
+        public virtual Ratings rating { get; set; }
 
+
+        [ForeignKey("category")]
         [Required]
-        public string category { get; set; }
+        public int categoryId { get; set; }
+        public virtual Category category { get; set; }
 
         [Required]
         public int year { get; set; }

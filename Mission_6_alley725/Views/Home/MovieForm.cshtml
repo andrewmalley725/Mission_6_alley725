@@ -17,24 +17,27 @@
         <label asp-for="title">Title: </label>
         <input type="text" asp-for="title" /><br />
 
-        <label asp-for="category">Category: </label>
-        <input type="text" asp-for="category" /><br />
+        <label asp-for="categoryId">Category: </label>
+        <select asp-for="categoryId">
+            <option selected>Choose a category</option>
+            @foreach (Category cat in ViewBag.Categories)
+            {
+                <option value="@cat.categoryId">@cat.category</option>
+            }
+        </select><br />
+        
 
         <label asp-for="year">Year: </label>
         <input type="number" asp-for="year" /><br />
 
-        <label asp-for="rating">Rating: </label>
-        <select asp-for="rating">
-            @foreach (string rating in (string[])ViewData["Ratings"])
+        <label asp-for="ratingId">Rating: </label>
+        <select asp-for="ratingId">
+                <option selected>Choose a rating</option>
+            @foreach (Ratings rating in ViewBag.Ratings)
             {
-                if (rating == "G")
-                {
-                    <option selected value="@rating">@rating</option>
-                }
-                else
-                {
-                    <option value="@rating">@rating</option>
-                }
+                
+                <option value="@rating.ratingId">@rating.rating</option>
+                
 
             }
         </select><br />

@@ -34,46 +34,41 @@
             color: white;
         }
 
-    #data-parent {
-        width: 70%;
-        display: flex;
-        align-items: center;
-        padding-left: 30%;
-    }
+    
 </style>
-<div id='data-parent'>
-    <table id="data">
-        <thead>
-            <tr>
-                @foreach (string header in (string[])ViewData["Theaders"])
-                {
-                    <th>@header</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var entity in Model)
+
+<table id="data">
+    <thead>
+        <tr>
+            @foreach (string header in (string[])ViewData["Theaders"])
             {
-                <tr>
-                    <td>@entity.title</td>
-                    <td>@entity.rating</td>
-                    <td>@entity.category</td>
-                    <td>@entity.year</td>
-
-                    @if (entity.edited == true)
-                    {
-                        <td>@entity.edited</td>
-                    }
-                    else
-                    {
-                        <td>No</td>
-                    }
-
-                    <td>@entity.lentTo</td>
-                    <td>@entity.notes</td>
-                </tr>
-
+                <th>@header</th>
             }
-        </tbody>
-    </table>
-</div>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mov in Model)
+        {
+            <tr>
+                <td>@mov.title</td>
+                <td>@mov.rating.rating</td>
+                <td>@mov.category.category</td>
+                <td>@mov.year</td>
+
+                @if (mov.edited == true)
+                {
+                    <td>Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+
+                <td>@mov.lentTo</td>
+                <td>@mov.notes</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

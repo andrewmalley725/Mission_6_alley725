@@ -13,16 +13,91 @@ namespace Mission_6_alley725.Models
         }
 
         public DbSet<Movies> Movies { get; set; }
+        public DbSet<Ratings> Ratings { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+
+            mb.Entity<Ratings>().HasData(
+                new Ratings
+                {
+                    ratingId = 1,
+                    rating = "G"
+                },
+                new Ratings
+                {
+                    ratingId = 2,
+                    rating = "PG"
+                },
+                new Ratings
+                {
+                    ratingId = 3,
+                    rating = "PG-13"
+                },
+                new Ratings
+                {
+                    ratingId = 4,
+                    rating = "R"
+                }
+
+            );
+
+            mb.Entity<Category>().HasData(
+                new Category
+                {
+                    categoryId = 1,
+                    category = "Action/Adventure"
+                },
+                new Category
+                {
+                    categoryId = 2,
+                    category = "Comedy"
+                },
+                new Category
+                {
+                    categoryId = 3,
+                    category = "Sports"
+                },
+                new Category
+                {
+                    categoryId = 4,
+                    category = "Drama"
+                },
+                new Category
+                {
+                    categoryId = 5,
+                    category = "Family"
+                },
+                new Category
+                {
+                    categoryId = 6,
+                    category = "Horror/Suspense"
+                },
+                new Category
+                {
+                    categoryId = 7,
+                    category = "Miscellaneous"
+                },
+                new Category
+                {
+                    categoryId = 8,
+                    category = "Television"
+                },
+                new Category
+                {
+                    categoryId = 9,
+                    category = "VHS"
+                }
+            );
+
             mb.Entity<Movies>().HasData(
                 new Movies
                 {
                     movieId = 1,
                     title = "Invincible",
-                    rating = "PG",
-                    category = "Sports",
+                    ratingId = 2,
+                    categoryId = 3,
                     year = 2006,
                     edited = false,
                     lentTo = "",
@@ -32,8 +107,8 @@ namespace Mission_6_alley725.Models
                 {
                     movieId = 2,
                     title = "Tommy Boy",
-                    rating = "PG-13",
-                    category = "Comedy",
+                    ratingId = 3,
+                    categoryId = 2,
                     year = 1995,
                     edited = false,
                     lentTo = "",
@@ -43,8 +118,8 @@ namespace Mission_6_alley725.Models
                 {
                     movieId = 3,
                     title = "Top Gun: Maverick",
-                    rating = "PG-13",
-                    category = "Action",
+                    ratingId = 3,
+                    categoryId = 1,
                     year = 2022,
                     edited = false,
                     lentTo = "",

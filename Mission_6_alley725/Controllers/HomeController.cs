@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission_6_alley725.Models;
 using System;
@@ -41,7 +42,9 @@ namespace Mission_6_alley725.Controllers
         public IActionResult MovieForm()
         {  
 
-            ViewData["Ratings"] = new string[] { "G", "PG", "PG-13", "R" };
+            ViewBag.Ratings = _db.Ratings.ToList();
+
+            ViewBag.Categories = _db.Category.ToList();
 
             return View();
         }
@@ -51,13 +54,21 @@ namespace Mission_6_alley725.Controllers
         {
             _db.Add(movie);
             _db.SaveChanges();
-            var data = _db.Movies.ToList();
+            var data = _db.Movies
+                .Include(x => x.rating)
+                .Include(x => x.category)
+                .OrderBy(x => x.title)
+                .ToList();
             return View("Data", data);
         }
 
         public IActionResult Data()
         {
-            var data = _db.Movies.ToList();
+            var data = _db.Movies
+                .Include(x => x.rating)
+                .Include(x => x.category)
+                .OrderBy(x => x.title)
+                .ToList();
             return View(data);
          }
 
