@@ -40,7 +40,7 @@ namespace Mission_6_alley725.Controllers
 
         [HttpGet]
         public IActionResult MovieForm()
-        {  
+        {
 
             ViewBag.Ratings = _db.Ratings.ToList();
 
@@ -70,9 +70,58 @@ namespace Mission_6_alley725.Controllers
                 .OrderBy(x => x.title)
                 .ToList();
             return View(data);
-         }
+        }
 
-            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var movie = _db.Movies.FirstOrDefault(x => x.movieId == id);
+
+            ViewBag.Ratings = _db.Ratings.ToList();
+
+            ViewBag.Categories = _db.Category.ToList();
+
+            return View("MovieForm", movie);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movies mov)
+        {
+
+            var movie = _db.Movies.FirstOrDefault(x => x.movieId == mov.movieId);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            movie.title = mov.title;
+            movie.categoryId = mov.categoryId;
+            movie.ratingId = mov.ratingId;
+            movie.year = mov.year;
+            movie.edited = mov.edited;
+            movie.lentTo = mov.lentTo;
+            movie.notes = mov.notes;
+
+            _db.Movies.Update(movie);
+            _db.SaveChanges();
+
+            return RedirectToAction("Data");
+        }
+
+
+        public IActionResult Delete(int id)
+        {
+            var movie = _db.Movies.FirstOrDefault(x => x.movieId == id);
+
+            _db.Movies.Remove(movie);
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Data");
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
