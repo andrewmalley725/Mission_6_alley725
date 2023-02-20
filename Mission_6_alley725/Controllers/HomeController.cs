@@ -53,7 +53,7 @@ namespace Mission_6_alley725.Controllers
         public IActionResult MovieForm(Movies movie)
         {
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //checks for valid data
             {
                 _db.Add(movie);
                 _db.SaveChanges();
@@ -65,7 +65,7 @@ namespace Mission_6_alley725.Controllers
                 return View("Data", data);
             }
 
-            else
+            else //if invalid, redirect to MovieForm Get Method
             {
                 ViewBag.Ratings = _db.Ratings.ToList();
 
@@ -95,7 +95,7 @@ namespace Mission_6_alley725.Controllers
 
             ViewBag.Categories = _db.Category.ToList();
 
-            return View("MovieForm", movie);
+            return View("MovieForm", movie); //redircts to form view but gives it data to auto-fill
         }
 
         [HttpPost]
