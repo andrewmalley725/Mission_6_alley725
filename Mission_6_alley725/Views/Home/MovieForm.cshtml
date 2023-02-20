@@ -5,14 +5,10 @@
 
 @model Movies
 
-<style>
-    #add-movie {
-        text-align: center;
-    }
-</style>
+
 
 <div id="add-movie">
-
+    <div asp-validation-summary="All"></div>
     <form method="post">
         <input type="hidden" asp-for="movieId"/>
         <label asp-for="title">Title: </label>

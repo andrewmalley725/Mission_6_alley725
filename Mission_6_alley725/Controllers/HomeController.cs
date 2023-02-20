@@ -52,14 +52,28 @@ namespace Mission_6_alley725.Controllers
         [HttpPost]
         public IActionResult MovieForm(Movies movie)
         {
-            _db.Add(movie);
-            _db.SaveChanges();
-            var data = _db.Movies
-                .Include(x => x.rating)
-                .Include(x => x.category)
-                .OrderBy(x => x.title)
-                .ToList();
-            return View("Data", data);
+
+            if (ModelState.IsValid)
+            {
+                _db.Add(movie);
+                _db.SaveChanges();
+                var data = _db.Movies
+                    .Include(x => x.rating)
+                    .Include(x => x.category)
+                    .OrderBy(x => x.title)
+                    .ToList();
+                return View("Data", data);
+            }
+
+            else
+            {
+                ViewBag.Ratings = _db.Ratings.ToList();
+
+                ViewBag.Categories = _db.Category.ToList();
+
+                return View();
+            }
+            
         }
 
         public IActionResult Data()

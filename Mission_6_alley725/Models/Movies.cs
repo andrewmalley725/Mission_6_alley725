@@ -10,26 +10,28 @@ namespace Mission_6_alley725.Models
     public class Movies
     {
         [Key]
-        [Required]
+        [Required ]
         public int movieId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter a valid title")]
         public string title { get; set; }
 
         [ForeignKey("rating")]
-        [Required]
+        [Required(ErrorMessage = "Choose a rating")]
         public int ratingId { get; set; }
         public virtual Ratings rating { get; set; }
 
 
         [ForeignKey("category")]
-        [Required]
+        [Required(ErrorMessage = "Choose a category")]
         public int categoryId { get; set; }
         public virtual Category category { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Year is required")]
         public int year { get; set; }
+
         public bool edited { get; set; }
+
         public string lentTo { get; set; }
 
         [MaxLength(25)]
